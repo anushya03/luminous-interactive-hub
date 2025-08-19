@@ -7,11 +7,13 @@ import Skills from '@/components/Skills';
 import Articles from '@/components/Articles';
 import Contact from '@/components/Contact';
 import BlurShapes from '@/components/BlurShapes';
+import CustomParticles from '@/components/CustomParticles';
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background relative">
       <BlurShapes />
+      <CustomParticles />
       <Navigation />
       <main>
         <Hero />

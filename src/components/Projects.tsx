@@ -26,8 +26,8 @@ const Projects = () => {
       category: "NLP & AI",
       status: "Completed",
       icon: <MessageSquare className="w-6 h-6" />,
-      github: "#",
-      demo: "#",
+      github: "https://github.com/anushya03/comment-toxicity-detection",
+      demo: "https://github.com/anushya03/comment-toxicity-detection",
       image: "bg-gradient-to-br from-purple-500 to-pink-600"
     },
     {
@@ -37,8 +37,8 @@ const Projects = () => {
       category: "AI & NLP",
       status: "Completed",
       icon: <Brain className="w-6 h-6" />,
-      github: "#",
-      demo: "#",
+      github: "https://github.com/anushya03/INNOVATIVE-CHATBOT-",
+      demo: "https://github.com/anushya03/INNOVATIVE-CHATBOT-",
       image: "bg-gradient-to-br from-blue-500 to-cyan-600"
     },
     {
@@ -48,8 +48,8 @@ const Projects = () => {
       category: "UI Development",
       status: "Completed",
       icon: <Car className="w-6 h-6" />,
-      github: "#",
-      demo: "#",
+      github: "https://github.com/anushya03/Car-dashboard-and-Infotainment--Qt",
+      demo: "https://github.com/anushya03/Car-dashboard-and-Infotainment--Qt",
       image: "bg-gradient-to-br from-green-500 to-emerald-600"
     }
   ];
@@ -151,27 +151,31 @@ const Projects = () => {
 
                   {/* Action Buttons */}
                   <div className="flex gap-3">
-                    <Button variant="outline" size="sm" className="flex-1 group/btn">
-                      <Github className="w-4 h-4 mr-2" />
-                      Code
-                      <motion.div
-                        className="ml-2"
-                        whileHover={{ x: 3 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <ExternalLink className="w-3 h-3" />
-                      </motion.div>
+                    <Button variant="outline" size="sm" className="flex-1 group/btn" asChild>
+                      <a href={project.github} target="_blank" rel="noopener noreferrer">
+                        <Github className="w-4 h-4 mr-2" />
+                        Code
+                        <motion.div
+                          className="ml-2"
+                          whileHover={{ x: 3 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <ExternalLink className="w-3 h-3" />
+                        </motion.div>
+                      </a>
                     </Button>
-                    <Button variant="glow" size="sm" className="flex-1 group/btn">
-                      <Eye className="w-4 h-4 mr-2" />
-                      Demo
-                      <motion.div
-                        className="ml-2"
-                        whileHover={{ x: 3 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <ExternalLink className="w-3 h-3" />
-                      </motion.div>
+                    <Button variant="glow" size="sm" className="flex-1 group/btn" asChild>
+                      <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                        <Eye className="w-4 h-4 mr-2" />
+                        Demo
+                        <motion.div
+                          className="ml-2"
+                          whileHover={{ x: 3 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <ExternalLink className="w-3 h-3" />
+                        </motion.div>
+                      </a>
                     </Button>
                   </div>
                 </CardContent>
@@ -188,16 +192,18 @@ const Projects = () => {
           viewport={{ once: true }}
           className="text-center mt-12"
         >
-          <Button variant="hero" size="lg" className="group">
-            <Github className="w-5 h-5 mr-2" />
-            View All Projects on GitHub
-            <motion.div
-              className="ml-2"
-              whileHover={{ x: 5 }}
-              transition={{ duration: 0.2 }}
-            >
-              <ChevronRight className="w-4 h-4" />
-            </motion.div>
+          <Button variant="hero" size="lg" className="group" asChild>
+            <a href="https://github.com/anushya03" target="_blank" rel="noopener noreferrer">
+              <Github className="w-5 h-5 mr-2" />
+              View All Projects on GitHub
+              <motion.div
+                className="ml-2"
+                whileHover={{ x: 5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <ChevronRight className="w-4 h-4" />
+              </motion.div>
+            </a>
           </Button>
         </motion.div>
       </div>

@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Download, Mail, Phone } from 'lucide-react';
 import ThreeScene from './ThreeScene';
-import CustomParticles from './CustomParticles';
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -16,7 +15,6 @@ const Hero = () => {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      <CustomParticles />
       
       <div className="container mx-auto px-4 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -101,9 +99,11 @@ const Hero = () => {
                 <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
               </Button>
               
-              <Button variant="glow" size="lg">
-                <Download className="w-5 h-5 mr-2" />
-                Download Resume
+              <Button variant="glow" size="lg" asChild>
+                <a href="/resume.pdf" download>
+                  <Download className="w-5 h-5 mr-2" />
+                  Download Resume
+                </a>
               </Button>
             </motion.div>
 
@@ -119,7 +119,7 @@ const Hero = () => {
                 <div className="text-sm text-foreground/60">AI Projects</div>
               </div>
               <div className="text-center lg:text-left">
-                <div className="text-2xl font-bold text-accent">8.17</div>
+                <div className="text-2xl font-bold text-primary">8.17</div>
                 <div className="text-sm text-foreground/60">CGPA</div>
               </div>
               <div className="text-center lg:text-left">
@@ -136,8 +136,13 @@ const Hero = () => {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="relative"
           >
-            <div className="glass rounded-2xl p-8 hover:shadow-glow transition-all duration-500">
-              <ThreeScene />
+            <div className="glass rounded-2xl p-0 overflow-hidden hover:shadow-glow transition-all duration-500 ring-1 ring-border max-w-md mx-auto aspect-[4/5]">
+              <img
+                src="/profile.jpg"
+                alt="Anushya Varshini K"
+                className="w-full h-full object-cover object-bottom"
+                loading="lazy"
+              />
             </div>
             
             {/* Enhanced Floating elements */}

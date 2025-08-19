@@ -13,7 +13,7 @@ import {
   Send, 
   Github, 
   Linkedin, 
-  Instagram,
+  FileText,
   Youtube,
   Twitter,
   MessageCircle
@@ -27,6 +27,8 @@ const Contact = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const accessKey = (import.meta as any).env?.VITE_WEB3FORMS_KEY as string | undefined;
+  const fallbackPublicKey = 'be39d78c-bd1a-4dd0-8b40-ab609f345ad6';
   const { toast } = useToast();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -38,37 +40,80 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate form submission
-    setTimeout(() => {
+    const effectiveKey = accessKey || fallbackPublicKey;
+    if (!effectiveKey) {
+      // Fallback: open default email client with prefilled data
+      const subject = formData.subject || 'New message from portfolio contact form';
+      const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
+      const mailtoUrl = `mailto:anukarthikeyan03@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailtoUrl;
       toast({
-        title: "Message sent successfully!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
+        title: "Email service not configured",
+        description: "Opening your email client to send the message directly...",
       });
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: effectiveKey,
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          from_name: formData.name,
+          reply_to: formData.email
+        })
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        toast({
+          title: "Message sent successfully!",
+          description: "Thank you for reaching out. I'll get back to you soon.",
+        });
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        toast({
+          title: "Failed to send message",
+          description: result.message || 'Please try again later.',
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Network error",
+        description: "Could not send your message. Please try again.",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 2000);
+    }
   };
 
   const contactInfo = [
     {
       icon: <Mail className="w-5 h-5" />,
       label: "Email",
-      value: "anushya.varshini@example.com",
-      href: "mailto:anushya.varshini@example.com"
+      value: "anukarthikeyan03@gmail.com",
+      href: "mailto:anukarthikeyan03@gmail.com"
     },
     {
       icon: <Phone className="w-5 h-5" />,
       label: "Phone",
-      value: "+91 98765 43210",
-      href: "tel:+919876543210"
+      value: "63697 25720",
+      href: "tel:+916369725720"
     },
     {
       icon: <MapPin className="w-5 h-5" />,
       label: "Location",
-      value: "Chennai, Tamil Nadu, India",
-      href: "#"
+      value: "Tiruppur, Tamil Nadu",
+      href: "https://www.google.com/maps/search/?api=1&query=Tiruppur%2C%20Tamil%20Nadu"
     }
   ];
 
@@ -76,20 +121,20 @@ const Contact = () => {
     {
       name: "LinkedIn",
       icon: <Linkedin className="w-5 h-5" />,
-      href: "#",
+      href: "https://www.linkedin.com/in/anushyavarshinik/",
       color: "hover:text-blue-500"
     },
     {
       name: "GitHub",
       icon: <Github className="w-5 h-5" />,
-      href: "#",
+      href: "https://github.com/anushya03",
       color: "hover:text-gray-400"
     },
     {
-      name: "Instagram",
-      icon: <Instagram className="w-5 h-5" />,
-      href: "#",
-      color: "hover:text-pink-500"
+      name: "Medium",
+      icon: <FileText className="w-5 h-5" />,
+      href: "https://medium.com/@anukarthikeyan03",
+      color: "hover:text-green-600"
     },
     {
       name: "YouTube",
@@ -300,6 +345,13 @@ const Contact = () => {
                   I typically respond to messages within 24 hours. 
                   For urgent matters, feel free to reach out via phone.
                 </p>
+                <a
+                  href="tel:+916369725720"
+                  className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-lg border border-primary/30 text-primary hover:bg-primary/10 transition-colors"
+                >
+                  <Phone className="w-4 h-4" />
+                  63697 25720
+                </a>
               </CardContent>
             </Card>
           </motion.div>

@@ -5,6 +5,9 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  // For GitHub Pages, set base to the repo name if deploying to user/org repo subpath
+  // Replace luminous-interactive-hub with your repository name if different
+  base: "/luminous-interactive-hub/",
   server: {
     host: "::",
     port: 8080,

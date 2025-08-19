@@ -156,9 +156,9 @@ const Articles = () => {
                 </motion.div>
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  className="p-4 bg-accent/5 rounded-lg border border-accent/20"
+                  className="p-4 bg-warning/5 rounded-lg border border-warning/20"
                 >
-                  <div className="text-2xl font-bold text-accent mb-2">2024-25</div>
+                  <div className="text-2xl font-bold text-warning mb-2">2024-25</div>
                   <div className="text-sm text-foreground/70">Recent Achievements</div>
                 </motion.div>
                 <motion.div

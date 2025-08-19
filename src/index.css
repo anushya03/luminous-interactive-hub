@@ -2,11 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Premium Portfolio Design System - Dark Theme with Advanced Animations */
+/* Premium Portfolio Design System - Light Theme with Subtle Animations */
 
 @layer base {
   :root {
-    /* Dark Portfolio Theme */
+    /* Light Portfolio Theme */
+    --background: 0 0% 100%; /* white */
+    --foreground: 222 47% 11%; /* neutral-900 */
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Subtle blue as brand, still neutral-friendly */
+    --primary: 221 83% 53%; /* blue-600 */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 20% 96%; /* gray-100 */
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 214 32% 91%; /* gray-200 */
+    --muted-foreground: 215 16% 47%; /* gray-500 */
+
+    --accent: 210 40% 96%; /* gray-100/neutral accent */
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
+
+    --radius: 0.75rem;
+
+    /* Portfolio Specific Colors */
+    --hero-gradient-from: 221 83% 53%;
+    --hero-gradient-to: 217 91% 60%; /* blue-500 */
+    --glow: 221 83% 53%;
+    --glass: 0 0% 100%;
+    --glass-border: 215 16% 90%;
+    --star-color: 222 47% 11%;
+    
+    /* Blur Backgrounds */
+    --blur-primary: 221 83% 53% / 0.15;
+    --blur-secondary: 217 91% 60% / 0.15;
+    --blur-accent: 210 40% 96% / 0.6;
+    
+    /* Success & Warning */
+    --success: 142 71% 35%;
+    --warning: 38 92% 50%;
+    
+    /* Animation Timing */
+    --animation-fast: 0.2s;
+    --animation-normal: 0.3s;
+    --animation-slow: 0.5s;
+    --animation-ultra-slow: 1s;
+
+    /* Shadows & Glows */
+    --shadow-glow: 0 0 30px hsl(221 83% 53% / 0.25);
+    --shadow-elegant: 0 12px 30px -10px hsl(220 14% 80% / 0.6);
+    --shadow-card: 0 8px 20px -6px hsl(220 14% 80% / 0.5);
+  }
+
+  /* Light mode is default */
+}
+
+@layer base {
+  /* Dark mode overrides using class strategy */
+  .dark {
     --background: 230 25% 8%;
     --foreground: 210 40% 98%;
 
@@ -35,37 +101,28 @@
     --input: 230 15% 22%;
     --ring: 262 73% 65%;
 
-    --radius: 0.75rem;
-
-    /* Portfolio Specific Colors */
     --hero-gradient-from: 262 73% 65%;
     --hero-gradient-to: 289 85% 70%;
     --glow: 262 73% 65%;
     --glass: 230 20% 12%;
     --glass-border: 230 15% 25%;
-    
-    /* Blur Backgrounds */
+    --star-color: 0 0% 100%;
+
     --blur-primary: 262 73% 65% / 0.1;
     --blur-secondary: 289 85% 70% / 0.1;
     --blur-accent: 196 76% 77% / 0.1;
-    
-    /* Success & Warning */
+
     --success: 142 71% 45%;
     --warning: 38 92% 50%;
     
-    /* Animation Timing */
-    --animation-fast: 0.2s;
-    --animation-normal: 0.3s;
-    --animation-slow: 0.5s;
-    --animation-ultra-slow: 1s;
-
-    /* Shadows & Glows */
     --shadow-glow: 0 0 40px hsl(var(--glow) / 0.4);
     --shadow-elegant: 0 20px 50px -10px hsl(230 25% 8% / 0.8);
     --shadow-card: 0 10px 30px -5px hsl(230 25% 8% / 0.6);
   }
 
-  /* Dark mode is default - no light mode variants needed */
+  .dark body {
+    background: linear-gradient(135deg, hsl(230 25% 8%), hsl(230 30% 6%));
+  }
 }
 
 @layer base {
@@ -79,7 +136,7 @@
 
   body {
     @apply bg-background text-foreground overflow-x-hidden;
-    background: linear-gradient(135deg, hsl(var(--background)), hsl(230 30% 6%));
+    background: linear-gradient(135deg, hsl(0 0% 100%), hsl(210 40% 98%));
     min-height: 100vh;
   }
 
@@ -89,31 +146,31 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: hsl(var(--muted));
+    background: hsl(210 40% 96%);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, hsl(var(--primary)), hsl(var(--accent)));
+    background: hsl(215 16% 70%);
     border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, hsl(var(--accent)), hsl(var(--primary)));
+    background: hsl(215 16% 60%);
   }
 }
 
 @layer components {
   /* Glass Morphism Effect */
   .glass {
-    backdrop-filter: blur(20px);
-    background: linear-gradient(135deg, hsl(var(--glass) / 0.8), hsl(var(--glass) / 0.4));
-    border: 1px solid hsl(var(--glass-border) / 0.2);
-    box-shadow: var(--shadow-elegant);
+    backdrop-filter: blur(16px);
+    background: linear-gradient(135deg, hsl(var(--glass) / 0.9), hsl(var(--glass) / 0.6));
+    border: 1px solid hsl(var(--glass-border));
+    box-shadow: var(--shadow-card);
   }
 
   /* Gradient Text Effect */
   .gradient-text {
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--hero-gradient-to)));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -139,20 +196,20 @@
     position: absolute;
     border-radius: 50%;
     filter: blur(100px);
-    opacity: 0.3;
+    opacity: 0.25;
     animation: float 8s ease-in-out infinite;
   }
 
   .blur-shape-1 {
-    background: radial-gradient(circle, hsl(var(--primary) / 0.4), transparent);
+    background: radial-gradient(circle, hsl(var(--primary) / 0.25), transparent);
   }
 
   .blur-shape-2 {
-    background: radial-gradient(circle, hsl(var(--accent) / 0.4), transparent);
+    background: radial-gradient(circle, hsl(var(--hero-gradient-to) / 0.2), transparent);
   }
 
   .blur-shape-3 {
-    background: radial-gradient(circle, hsl(196 76% 77% / 0.4), transparent);
+    background: radial-gradient(circle, hsl(210 40% 96% / 0.6), transparent);
   }
 
   /* Interactive Card Hover */
