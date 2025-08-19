@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ExternalLink, Github, Eye, Zap, Brain, MessageSquare, Car, ArrowRight } from 'lucide-react';
+import { ExternalLink, Github, Eye, Zap, Brain, MessageSquare, Car, ChevronRight } from 'lucide-react';
 
 const Projects = () => {
   const projects = [
@@ -196,7 +196,7 @@ const Projects = () => {
               whileHover={{ x: 5 }}
               transition={{ duration: 0.2 }}
             >
-              <ArrowRight className="w-4 h-4" />
+              <ChevronRight className="w-4 h-4" />
             </motion.div>
           </Button>
         </motion.div>
