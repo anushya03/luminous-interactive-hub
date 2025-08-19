@@ -1,7 +1,8 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Download, Mail } from 'lucide-react';
+import { ArrowRight, Download, Mail, Phone } from 'lucide-react';
 import ThreeScene from './ThreeScene';
 import CustomParticles from './CustomParticles';
 
@@ -46,10 +47,10 @@ const Hero = () => {
             >
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
                 Hi, I'm{' '}
-                <span className="gradient-text">Anushya Varshini</span>
+                <span className="gradient-text">Anushya Varshini K</span>
               </h1>
               <p className="text-xl md:text-2xl text-foreground/80">
-                Machine Learning Enthusiast & Full-Stack Developer
+                AI & Machine Learning Engineer
               </p>
             </motion.div>
 
@@ -60,10 +61,27 @@ const Hero = () => {
               transition={{ delay: 0.6, duration: 0.6 }}
               className="text-lg text-foreground/70 max-w-2xl"
             >
-              Passionate about creating intelligent solutions through machine learning, 
-              data science, and modern web technologies. IEEE paper author and hackathon finalist 
-              with a drive for innovation.
+              Passionate AI engineer with hands-on experience in machine learning, deep learning, 
+              and computer vision. Skilled in building intelligent systems, real-time AI solutions, 
+              and user-centric applications.
             </motion.p>
+
+            {/* Contact Info */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
+              className="flex flex-wrap gap-4 text-sm text-foreground/60"
+            >
+              <div className="flex items-center gap-2">
+                <Phone className="w-4 h-4" />
+                <span>63697 25720</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Mail className="w-4 h-4" />
+                <span>anukarthikeyan03@gmail.com</span>
+              </div>
+            </motion.div>
 
             {/* CTA Buttons */}
             <motion.div
@@ -97,15 +115,15 @@ const Hero = () => {
               className="grid grid-cols-3 gap-8 pt-8"
             >
               <div className="text-center lg:text-left">
-                <div className="text-2xl font-bold text-primary">15+</div>
-                <div className="text-sm text-foreground/60">Projects</div>
+                <div className="text-2xl font-bold text-primary">4+</div>
+                <div className="text-sm text-foreground/60">AI Projects</div>
               </div>
               <div className="text-center lg:text-left">
-                <div className="text-2xl font-bold text-accent">IEEE</div>
-                <div className="text-sm text-foreground/60">Published</div>
+                <div className="text-2xl font-bold text-accent">8.17</div>
+                <div className="text-sm text-foreground/60">CGPA</div>
               </div>
               <div className="text-center lg:text-left">
-                <div className="text-2xl font-bold text-primary">Top 10</div>
+                <div className="text-2xl font-bold text-primary">3x</div>
                 <div className="text-sm text-foreground/60">Finalist</div>
               </div>
             </motion.div>
@@ -122,10 +140,16 @@ const Hero = () => {
               <ThreeScene />
             </div>
             
-            {/* Floating elements */}
+            {/* Enhanced Floating elements */}
             <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              animate={{ 
+                rotate: 360,
+                scale: [1, 1.1, 1]
+              }}
+              transition={{ 
+                rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+                scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+              }}
               className="absolute -top-4 -right-4 w-16 h-16 glass rounded-full flex items-center justify-center"
             >
               <div className="w-8 h-8 bg-hero-gradient rounded-full"></div>
@@ -133,19 +157,42 @@ const Hero = () => {
             
             <motion.div
               animate={{ 
-                y: [0, -10, 0],
-                scale: [1, 1.1, 1] 
+                y: [0, -15, 0],
+                scale: [1, 1.2, 1],
+                rotate: [0, 180, 360]
               }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ 
+                duration: 6, 
+                repeat: Infinity, 
+                ease: "easeInOut",
+                staggerChildren: 0.2
+              }}
               className="absolute -bottom-6 -left-6 w-12 h-12 glass rounded-xl flex items-center justify-center"
             >
               <div className="w-6 h-6 bg-accent rounded-full"></div>
+            </motion.div>
+
+            {/* Additional floating elements */}
+            <motion.div
+              animate={{ 
+                x: [0, 20, 0],
+                y: [0, -10, 0],
+                rotate: [0, -90, 0]
+              }}
+              transition={{ 
+                duration: 8, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
+              className="absolute top-1/2 -right-8 w-8 h-8 glass rounded-lg flex items-center justify-center"
+            >
+              <div className="w-4 h-4 bg-gradient-to-br from-primary to-accent rounded-full"></div>
             </motion.div>
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Enhanced Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -155,7 +202,7 @@ const Hero = () => {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="w-6 h-10 border-2 border-primary/30 rounded-full flex justify-center"
+          className="w-6 h-10 border-2 border-primary/30 rounded-full flex justify-center hover:border-primary/60 transition-colors cursor-pointer"
         >
           <motion.div
             animate={{ y: [0, 12, 0] }}

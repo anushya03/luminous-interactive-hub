@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -6,65 +7,60 @@ import {
   Brain, 
   Code, 
   Database, 
-  Cloud, 
   Globe, 
   Cpu,
   BarChart,
-  Zap
+  Zap,
+  Eye
 } from 'lucide-react';
 
 const Skills = () => {
   const skillCategories = [
     {
-      title: "Machine Learning & AI",
-      icon: <Brain className="w-6 h-6" />,
-      color: "from-purple-500 to-pink-500",
-      skills: [
-        { name: "Python", level: 95 },
-        { name: "TensorFlow", level: 88 },
-        { name: "PyTorch", level: 85 },
-        { name: "Scikit-learn", level: 92 },
-        { name: "OpenCV", level: 80 },
-        { name: "NLP", level: 75 }
-      ]
-    },
-    {
-      title: "Web Development",
+      title: "Programming Languages",
       icon: <Code className="w-6 h-6" />,
       color: "from-blue-500 to-cyan-500",
       skills: [
-        { name: "React", level: 90 },
-        { name: "Node.js", level: 85 },
-        { name: "JavaScript/TypeScript", level: 88 },
-        { name: "Next.js", level: 82 },
-        { name: "Tailwind CSS", level: 90 },
-        { name: "Express.js", level: 80 }
+        { name: "Python", level: 90 },
+        { name: "Java", level: 70 },
+        { name: "SQL", level: 85 }
       ]
     },
     {
-      title: "Data Science",
-      icon: <BarChart className="w-6 h-6" />,
+      title: "ML/DL Frameworks",
+      icon: <Brain className="w-6 h-6" />,
+      color: "from-purple-500 to-pink-500",
+      skills: [
+        { name: "TensorFlow", level: 88 },
+        { name: "PyTorch", level: 85 },
+        { name: "FAISS", level: 80 },
+        { name: "Ollama", level: 75 },
+        { name: "YOLOv8", level: 90 },
+        { name: "OpenCV", level: 88 }
+      ]
+    },
+    {
+      title: "Web Development & Tools",
+      icon: <Globe className="w-6 h-6" />,
       color: "from-green-500 to-emerald-500",
       skills: [
-        { name: "Pandas", level: 92 },
-        { name: "NumPy", level: 90 },
-        { name: "Matplotlib", level: 85 },
-        { name: "Seaborn", level: 80 },
-        { name: "Jupyter", level: 95 },
-        { name: "Statistical Analysis", level: 78 }
+        { name: "Flask", level: 85 },
+        { name: "Qt Framework", level: 80 },
+        { name: "GitHub", level: 90 },
+        { name: "Jupyter Notebook", level: 95 },
+        { name: "VS Code", level: 90 }
       ]
     },
     {
-      title: "Databases & Cloud",
-      icon: <Database className="w-6 h-6" />,
+      title: "AI/ML Domains",
+      icon: <Eye className="w-6 h-6" />,
       color: "from-orange-500 to-red-500",
       skills: [
-        { name: "MongoDB", level: 85 },
-        { name: "PostgreSQL", level: 80 },
-        { name: "MySQL", level: 82 },
-        { name: "AWS", level: 75 },
-        { name: "Docker", level: 70 },
-        { name: "Firebase", level: 88 }
+        { name: "Machine Learning", level: 92 },
+        { name: "Deep Learning", level: 88 },
+        { name: "Computer Vision", level: 90 },
+        { name: "Natural Language Processing", level: 85 },
+        { name: "Web Development", level: 80 }
       ]
     }
   ];
@@ -73,9 +69,9 @@ const Skills = () => {
     { name: "Git & GitHub", icon: <Code className="w-5 h-5" /> },
     { name: "VS Code", icon: <Globe className="w-5 h-5" /> },
     { name: "Jupyter Notebook", icon: <BarChart className="w-5 h-5" /> },
-    { name: "Google Colab", icon: <Cloud className="w-5 h-5" /> },
-    { name: "Postman", icon: <Zap className="w-5 h-5" /> },
-    { name: "Figma", icon: <Cpu className="w-5 h-5" /> }
+    { name: "TensorFlow", icon: <Brain className="w-5 h-5" /> },
+    { name: "PyTorch", icon: <Zap className="w-5 h-5" /> },
+    { name: "Qt Framework", icon: <Cpu className="w-5 h-5" /> }
   ];
 
   return (
@@ -93,7 +89,7 @@ const Skills = () => {
             Skills & <span className="gradient-text">Expertise</span>
           </h2>
           <p className="text-xl text-foreground/70 max-w-2xl mx-auto mb-8">
-            Technologies and tools I work with to bring ideas to life
+            Technologies and frameworks I work with to build intelligent AI solutions
           </p>
           <div className="w-24 h-1 bg-hero-gradient mx-auto rounded-full"></div>
         </motion.div>
@@ -111,11 +107,15 @@ const Skills = () => {
               <Card className="glass card-hover h-full">
                 <CardHeader className="pb-4">
                   <CardTitle className="flex items-center gap-3">
-                    <div className={`p-2 rounded-lg bg-gradient-to-r ${category.color}`}>
+                    <motion.div 
+                      className={`p-2 rounded-lg bg-gradient-to-r ${category.color}`}
+                      whileHover={{ scale: 1.1, rotate: 10 }}
+                      transition={{ duration: 0.3 }}
+                    >
                       <div className="text-white">
                         {category.icon}
                       </div>
-                    </div>
+                    </motion.div>
                     {category.title}
                   </CardTitle>
                 </CardHeader>
@@ -137,10 +137,20 @@ const Skills = () => {
                           <span className="text-sm font-medium">{skill.name}</span>
                           <span className="text-sm text-foreground/60">{skill.level}%</span>
                         </div>
-                        <Progress 
-                          value={skill.level} 
-                          className="h-2"
-                        />
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: "100%" }}
+                          transition={{ 
+                            delay: categoryIndex * 0.2 + skillIndex * 0.1 + 0.2,
+                            duration: 0.8
+                          }}
+                          viewport={{ once: true }}
+                        >
+                          <Progress 
+                            value={skill.level} 
+                            className="h-2"
+                          />
+                        </motion.div>
                       </motion.div>
                     ))}
                   </div>
@@ -169,19 +179,26 @@ const Skills = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.1, duration: 0.4 }}
                 viewport={{ once: true }}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ 
+                  scale: 1.1, 
+                  rotate: [0, -5, 5, 0],
+                  transition: { duration: 0.3 }
+                }}
                 className="glass p-4 rounded-xl text-center group cursor-pointer"
               >
-                <div className="text-primary mb-2 group-hover:scale-110 transition-transform">
+                <motion.div 
+                  className="text-primary mb-2 group-hover:scale-110 transition-transform"
+                  whileHover={{ y: -2 }}
+                >
                   {tool.icon}
-                </div>
+                </motion.div>
                 <p className="text-sm font-medium">{tool.name}</p>
               </motion.div>
             ))}
           </div>
         </motion.div>
 
-        {/* Certifications & Learning */}
+        {/* Current Focus */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -191,24 +208,28 @@ const Skills = () => {
         >
           <Card className="glass max-w-4xl mx-auto">
             <CardContent className="p-8 text-center">
-              <h3 className="text-xl font-bold mb-4 gradient-text">
-                🎓 Continuous Learning
-              </h3>
+              <motion.h3 
+                className="text-xl font-bold mb-4 gradient-text"
+                whileHover={{ scale: 1.05 }}
+              >
+                🎯 Current Focus
+              </motion.h3>
               <p className="text-foreground/80 mb-6">
-                Always staying updated with the latest technologies and best practices. 
-                Currently pursuing advanced certifications in cloud computing and deep learning.
+                Specializing in real-time AI solutions for manufacturing automation, computer vision applications, 
+                and intelligent chatbot systems. Always exploring cutting-edge ML/DL techniques for practical implementations.
               </p>
               <div className="flex flex-wrap justify-center gap-3">
-                {["AWS Solutions Architect", "TensorFlow Developer", "Google Cloud ML", "Azure AI Fundamentals"].map((cert, index) => (
+                {["Real-time Computer Vision", "Manufacturing AI", "NLP & Chatbots", "Deep Learning Research"].map((focus, index) => (
                   <motion.div
-                    key={cert}
+                    key={focus}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1, duration: 0.4 }}
                     viewport={{ once: true }}
+                    whileHover={{ scale: 1.05 }}
                     className="px-4 py-2 bg-primary/10 rounded-full text-sm border border-primary/20"
                   >
-                    {cert}
+                    {focus}
                   </motion.div>
                 ))}
               </div>

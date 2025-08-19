@@ -1,36 +1,58 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { GraduationCap, Award, Users, Code } from 'lucide-react';
+import { GraduationCap, Award, Users, Code, Target, School } from 'lucide-react';
 
 const About = () => {
   const achievements = [
     {
       icon: <GraduationCap className="w-6 h-6" />,
-      title: "Academic Excellence",
-      description: "Computer Science Engineering with focus on AI/ML"
+      title: "B.Tech - AI & Data Science",
+      description: "CGPA: 8.17 | Bannari Amman Institute of Technology"
     },
     {
       icon: <Award className="w-6 h-6" />,
-      title: "IEEE Publication",
-      description: "Research paper on machine learning applications"
+      title: "Multiple Finalist",
+      description: "VASHISHT 2023, TechSpectrum 2024, Tech-Challenge 2025"
     },
     {
       icon: <Users className="w-6 h-6" />,
-      title: "Team Leadership",
-      description: "Led multiple successful project teams"
+      title: "Youth Red Cross",
+      description: "Educational & health awareness campaigns"
     },
     {
       icon: <Code className="w-6 h-6" />,
-      title: "Full-Stack Dev",
-      description: "Proficient in modern web technologies"
+      title: "AI Specialist",
+      description: "Computer Vision, NLP & Deep Learning expert"
     }
   ];
 
   const interests = [
-    "Machine Learning", "Deep Learning", "Data Science", "Web Development",
-    "Computer Vision", "Natural Language Processing", "Cloud Computing", "DevOps"
+    "Machine Learning", "Deep Learning", "Computer Vision", "Natural Language Processing",
+    "Computer Vision", "AI-Driven Solutions", "Manufacturing Automation", "Real-time Systems"
+  ];
+
+  const education = [
+    {
+      degree: "B.Tech – Artificial Intelligence & Data Science",
+      institution: "Bannari Amman Institute of Technology",
+      score: "CGPA: 8.17 (up to 5th sem)",
+      icon: <GraduationCap className="w-5 h-5" />
+    },
+    {
+      degree: "Higher Secondary (HSC)",
+      institution: "Veveaham Matric Hr Sec School",
+      score: "86.83%",
+      icon: <School className="w-5 h-5" />
+    },
+    {
+      degree: "SSLC",
+      institution: "Adharsh Vidhyalaya Matric Hr Sec School",
+      score: "84%",
+      icon: <School className="w-5 h-5" />
+    }
   ];
 
   return (
@@ -50,7 +72,7 @@ const About = () => {
           <div className="w-24 h-1 bg-hero-gradient mx-auto rounded-full"></div>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -59,26 +81,23 @@ const About = () => {
             viewport={{ once: true }}
             className="space-y-6"
           >
+            {/* Career Objective */}
             <Card className="glass card-hover">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-4 gradient-text">
-                  Passionate ML Engineer & Developer
-                </h3>
+                <div className="flex items-center gap-3 mb-4">
+                  <Target className="w-6 h-6 text-primary" />
+                  <h3 className="text-2xl font-bold gradient-text">Career Objective</h3>
+                </div>
                 <p className="text-foreground/80 leading-relaxed mb-6">
-                  I'm a dedicated Computer Science Engineering student with a deep passion for 
-                  machine learning and artificial intelligence. My journey in technology has led 
-                  me to explore various domains including deep learning, data science, and 
-                  full-stack web development.
-                </p>
-                <p className="text-foreground/80 leading-relaxed mb-6">
-                  With a strong foundation in both theoretical concepts and practical 
-                  implementation, I strive to create innovative solutions that bridge the 
-                  gap between cutting-edge research and real-world applications.
+                  Passionate AI and Machine Learning engineer with hands-on experience in machine learning, 
+                  deep learning, and computer vision. Skilled in building intelligent systems, real-time AI 
+                  solutions, and user-centric applications. Seeking to apply technical expertise in delivering 
+                  impactful AI-driven solutions for automation, security, and enhanced user experiences.
                 </p>
                 
-                {/* Interests Tags */}
+                {/* Areas of Interest */}
                 <div className="space-y-3">
-                  <h4 className="font-semibold text-primary">Areas of Interest:</h4>
+                  <h4 className="font-semibold text-primary">Areas of Expertise:</h4>
                   <div className="flex flex-wrap gap-2">
                     {interests.map((interest, index) => (
                       <motion.div
@@ -94,6 +113,37 @@ const About = () => {
                       </motion.div>
                     ))}
                   </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Education */}
+            <Card className="glass card-hover">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-bold mb-6 gradient-text flex items-center gap-2">
+                  <GraduationCap className="w-5 h-5" />
+                  Education
+                </h3>
+                <div className="space-y-4">
+                  {education.map((edu, index) => (
+                    <motion.div
+                      key={edu.degree}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.2, duration: 0.5 }}
+                      viewport={{ once: true }}
+                      className="border-l-2 border-primary/30 pl-4 py-2"
+                    >
+                      <div className="flex items-start gap-2">
+                        <div className="text-primary mt-1">{edu.icon}</div>
+                        <div>
+                          <h4 className="font-semibold text-foreground">{edu.degree}</h4>
+                          <p className="text-sm text-foreground/70">{edu.institution}</p>
+                          <Badge variant="outline" className="mt-1 text-xs">{edu.score}</Badge>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
               </CardContent>
             </Card>
@@ -118,11 +168,14 @@ const About = () => {
                 <Card className="glass card-hover group">
                   <CardContent className="p-6">
                     <div className="flex items-start space-x-4">
-                      <div className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
+                      <motion.div 
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors"
+                      >
                         <div className="text-primary">
                           {achievement.icon}
                         </div>
-                      </div>
+                      </motion.div>
                       <div className="flex-1">
                         <h4 className="font-semibold text-lg mb-2">
                           {achievement.title}
@@ -139,24 +192,51 @@ const About = () => {
           </motion.div>
         </div>
 
-        {/* Fun Fact */}
+        {/* Soft Skills & Languages */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="mt-16 text-center"
+          className="mt-16 grid md:grid-cols-2 gap-8"
         >
-          <Card className="glass max-w-2xl mx-auto">
-            <CardContent className="p-8">
+          <Card className="glass">
+            <CardContent className="p-8 text-center">
               <h3 className="text-xl font-semibold mb-4 gradient-text">
-                🎯 Current Focus
+                💪 Soft Skills
               </h3>
-              <p className="text-foreground/80">
-                Currently working on advanced machine learning projects and exploring 
-                the intersection of AI with web technologies. Always excited to collaborate 
-                on innovative projects that can make a positive impact!
-              </p>
+              <div className="flex flex-wrap justify-center gap-2">
+                {["Creativity", "Communication", "Leadership", "Time Management", "Integrity"].map((skill, index) => (
+                  <motion.div
+                    key={skill}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: index * 0.1, duration: 0.4 }}
+                    viewport={{ once: true }}
+                    className="px-3 py-1 bg-primary/10 rounded-full text-sm border border-primary/20"
+                  >
+                    {skill}
+                  </motion.div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="glass">
+            <CardContent className="p-8 text-center">
+              <h3 className="text-xl font-semibold mb-4 gradient-text">
+                🌐 Languages
+              </h3>
+              <div className="space-y-2">
+                <div className="flex items-center justify-center gap-2">
+                  <span className="font-medium">English</span>
+                  <Badge variant="outline" className="text-xs">Read/Write/Speak</Badge>
+                </div>
+                <div className="flex items-center justify-center gap-2">
+                  <span className="font-medium">Tamil</span>
+                  <Badge variant="outline" className="text-xs">Read/Write/Speak</Badge>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </motion.div>
